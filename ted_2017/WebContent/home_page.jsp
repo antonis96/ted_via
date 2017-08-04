@@ -14,6 +14,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
+
+
     <script>
     $(document).ready(function(){
       var date_input=$('input[name="date"]'); //our date input has the name "date"
@@ -57,7 +59,7 @@
         <li><a href="#myPage">HOME</a></li>
         <li>
             <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-            <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+            <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;    background-color: rgba(255,255,255, 0.9);">
               <li>
                      <div class="row">
                        <div class="col-md-12">
@@ -170,8 +172,27 @@
                   <div class='col-md-4'>
                   <form method="post">
                       <div class="input-group"> <!-- Date input -->
-                          <input class="form-control" id="destination" name="destination" placeholder="Destination" type="text"/>
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      
+                     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCtfnokWa69RcN7kKgEjfvu8xsoGhEVz_s"></script>
+
+                    <script type="text/javascript">
+                        google.maps.event.addDomListener(window, 'load', function () {
+                            var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                            google.maps.event.addListener(places, 'place_changed', function () {
+                                var place = places.getPlace();
+                                var address = place.formatted_address;
+                                var latitude = place.geometry.location.lat();
+                                var longitude = place.geometry.location.lng();
+                                var mesg = "Address: " + address;
+                                mesg += "\nLatitude: " + latitude;
+                                mesg += "\nLongitude: " + longitude;
+                                alert(mesg);
+                            });
+                        });
+                    </script>
+
+                  <input type="text" id="txtPlaces" style="width: 18vw; height: 5vh"  placeholder="Enter a location" />
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
 
                       </div>
                   </form>
@@ -181,7 +202,7 @@
                   <div class='col-md-4'>
                   <form method="post">
                       <div class="input-group"> <!-- Date input -->
-                          <input class="form-control" id="date" name="date" placeholder="MM/DD/YY" type="text"/>
+                          <input class="form-control" id="date" name="date" placeholder="Check In" type="text"/>
                           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 
                       </div>
@@ -191,7 +212,7 @@
               <div class='col-md-4'>
               <form method="post">
                   <div class="input-group"> <!-- Date input -->
-                      <input class="form-control" id="date" name="date" placeholder="MM/DD/YY" type="text"/>
+                      <input class="form-control" id="date" name="date" placeholder="Check Out" type="text"/>
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 
                   </div>
@@ -203,7 +224,7 @@
                   <br>
                   <form method="post">
                       <div class="input-group"> <!-- Date input -->
-                           <input class="form-control" id="number" type="number" min="0" name="number" placeholder="Number of People"/>
+                           <input class="form-control" id="number" type="number" min="0" max="20" name="number" placeholder="Number of People"/>
                               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 
                       </div>
@@ -215,7 +236,7 @@
                   <div class="col-md-4 col-md-offset-5">
                       <br>
                       <form method="post">
-                          <button type="submit" value="Submit">Submit</button>
+                          <button type="button" class="btn btn-info" value="Submit">Submit</button>
 
                       </form>
 
