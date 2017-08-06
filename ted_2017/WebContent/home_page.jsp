@@ -59,7 +59,7 @@
         <li><a href="#myPage">HOME</a></li>
         <li>
             <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-            <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;    background-color: rgba(255,255,255, 0.9);">
+            <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
               <li>
                      <div class="row">
                        <div class="col-md-12">
